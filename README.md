@@ -2,7 +2,7 @@
 
 > *Pushing pixels with nothing but logic chips, wire, and stubbornness.*
 
-![Status](https://img.shields.io/badge/status-in%20progress-yellow?style=for-the-badge)
+![Status](https://img.shields.io/badge/status-complete-brightgreen?style=for-the-badge)
 ![Platform](https://img.shields.io/badge/platform-breadboard-blue?style=for-the-badge)
 ![Resolution](https://img.shields.io/badge/resolution-800x600-green?style=for-the-badge)
 ![Built%20With](https://img.shields.io/badge/built%20with-74xx%20logic-red?style=for-the-badge)
@@ -11,43 +11,42 @@
 
 ## 📺 What Is This?
 
-A fully discrete, breadboard-built VGA video card capable of driving a real monitor — built from scratch using only 74-series logic ICs, EEPROMs, and passive components. No FPGA. No microcontroller doing the heavy lifting. Just raw hardware logic generating real VGA signals.
+A fully discrete, breadboard-built VGA video card capable of driving a real monitor — built from scratch using only 74-series logic ICs, EEPROMs, and passive components. No FPGA. No microcontroller doing the heavy lifting. Just raw hardware logic generating real VGA signals at 800×600 resolution.
 
-Inspired by [Ben Eater's video card project](https://eater.net/vga), but taken further with my own modifications, debugging, and hard-won lessons.
+Inspired by [Ben Eater's video card project](https://eater.net/vga), but built independently with my own debugging, modifications, and hard-won lessons along the way.
 
 ---
 
 ## 🖼️ Gallery
 
-> *Images coming soon — full build documentation in progress*
+> *Build photos coming soon*
 
 | | |
 |---|---|
 | 📷 **Breadboard Overview** | *(photo)* |
-| 📺 **First Pixels on Screen** | *(photo)* |
+| 📺 **Image Output on Monitor** | *(photo)* |
 | 🔬 **Close-up of Logic ICs** | *(photo)* |
 | 📊 **Oscilloscope — HSync/VSync Signals** | *(photo)* |
-| 🎮 **Test Image Output** | *(photo)* |
 
 ---
 
 ## ⚙️ How It Works
 
 ### VGA Signal Generation
-VGA works by scanning pixels line by line, left to right, top to bottom — 800×600 pixels at 60Hz in this build. The card generates:
+VGA works by scanning pixels line by line, left to right, top to bottom. The card generates:
 
 - **HSync** — Horizontal sync pulse, telling the monitor when a new line starts
-- **VSync** — Vertical sync pulse, telling the monitor when a new frame starts  
+- **VSync** — Vertical sync pulse, telling the monitor when a new frame starts
 - **RGB signals** — 3-bit color (1 bit per channel = 8 colors) during the active display period
 
 ### Pixel Clock & Counters
-A crystal oscillator drives a pixel clock. Binary counters (74HC163) count pixels horizontally and lines vertically. Comparator logic detects blanking intervals and generates sync pulses at the correct timing.
+A crystal oscillator drives the pixel clock. Binary counters (74HC163) count pixels horizontally and lines vertically. Comparator logic detects blanking intervals and generates sync pulses at the correct timing.
 
 ### Image Storage — EEPROM
 Image data is stored in a 28C256 EEPROM. The horizontal and vertical counter outputs form the EEPROM address bus. As counters increment, the EEPROM streams out pixel color data in real time — one pixel per clock cycle.
 
 ### Color Output
-3-bit RGB output (R, G, B) through resistor DAC to the VGA connector. Simple but effective — 8 colors total.
+3-bit RGB output (R, G, B) through resistor DAC to the VGA connector — 8 colors total.
 
 ---
 
@@ -65,19 +64,6 @@ Image data is stored in a 28C256 EEPROM. The horizontal and vertical counter out
 
 ---
 
-## 🐛 Debugging Journey
-
-This project was NOT easy. Documented problems and solutions:
-
-- **Black horizontal band on screen** — Vertical counter timing mismatch, vsync pulse hitting at wrong point in frame
-- **Checkerboard pixel corruption** — Address lines on EEPROM not toggling correctly, shifted address bits causing scrambled pixel data
-- **No sync lock** — Monitor refusing to lock; pixel clock frequency not matching 800×600 SVGA spec exactly
-- **Floating address lines** — Classic breadboard problem, causing random pixel noise
-
-> 💡 *Lesson learned: Always verify address lines with a logic probe before blaming the EEPROM*
-
----
-
 ## 📐 Timing Specs (800×600 @ 60Hz)
 
 | Parameter | Value |
@@ -92,28 +78,11 @@ This project was NOT easy. Documented problems and solutions:
 
 ---
 
-## 🚧 Current Status
+## 🔮 Upcoming Upgrade — Animated GIF Support
 
-- [x] HSync signal generation
-- [x] VSync signal generation  
-- [x] Sync signals verified on oscilloscope
-- [x] Monitor achieving sync lock
-- [x] EEPROM programmed with test image
-- [x] Pixels appearing on screen
-- [ ] Address line corruption fully resolved
-- [ ] Vertical timing band fixed
-- [ ] Clean full-frame image output
-- [ ] Final documentation & build log
+The current build displays a static image stored in the lower half of the 28C256 EEPROM. The planned upgrade uses a **555 timer to toggle address line A14**, switching between two frames stored in the upper and lower halves of the EEPROM address space. This gives the card the ability to display a two-frame animation — essentially a hardware GIF with no software involved whatsoever.
 
----
-
-## 🔮 What's Next
-
-After this project is complete, the journey continues:
-
-- **Dead-bug style SAP-1** — Rebuilding my 8-bit breadboard computer in free-air dead-bug style. No PCB, no breadboard. Pure sculpture that computes.
-- **6502 BASIC Interpreter** — Writing a BASIC interpreter in 6502 assembly on my homebrew computer
-- **STM32 Bare-metal Programming** — Moving into serious embedded firmware development
+Simple. Elegant. Pure hardware.
 
 ---
 
