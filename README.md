@@ -43,7 +43,7 @@ VGA works by scanning pixels line by line, left to right, top to bottom. The car
 A crystal oscillator drives the pixel clock. Binary counters (74HC161) count pixels horizontally and lines vertically. Comparator logic detects blanking intervals and generates sync pulses at the correct timing.
 
 ### Image Storage — EEPROM
-Image data is stored in a 28C256 EEPROM. The horizontal and vertical counter outputs form the EEPROM address bus. As counters increment, the EEPROM streams out pixel color data in real time — one pixel per clock cycle.
+Image data is stored in a 28C256 EEPROM. The horizontal and vertical counter outputs form the EEPROM address bus. As counters increment, the EEPROM streams out pixel color data in real time.
 
 ### Color Output
 3-bit RGB output (R, G, B) through resistor DAC to the VGA connector — 64 colors total.
