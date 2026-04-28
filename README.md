@@ -54,8 +54,8 @@ Image data is stored in a 28C256 EEPROM. The horizontal and vertical counter out
 
 | Component | Purpose |
 |-----------|---------|
-| 74HC161 | 4-bit binary counters with carry (pixel/line counting) |
-| 74HC00 74HC30 | NAND gates for sync logic |
+| 74LS161 | 4-bit binary counters with carry (pixel/line counting) |
+| 74LS00 74LS30 | NAND gates for sync logic |
 | 28C256 EEPROM | Image data storage |
 | Pierce Crystal Oscillator 10 MHz | Pixel clock generation |
 | Resistors | RGB DAC + pull-ups |
