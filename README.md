@@ -23,7 +23,7 @@ Inspired by [Ben Eater's video card project](https://eater.net/vga), but built i
 
 | | |
 |---|---|
-| 📷 **Breadboard Overview** | ![BREADBOARS!!!!](./photos/closeUP.jpg) |
+| 📷 **Breadboard Overview** | ![BREADBOARDS!!!!](./photos/closeUp.jpg) |
 | 📺 **Image Output on Monitor** | ![OUTPUT](./photos/output.jpg) |
 | 🔬 **Close-up of Logic ICs** | *(photo)* |
 | 📊 **Oscilloscope — HSync/VSync Signals** | *(photo)* |
