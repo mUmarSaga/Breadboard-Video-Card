@@ -23,8 +23,8 @@ Inspired by [Ben Eater's video card project](https://eater.net/vga), but built i
 
 | | |
 |---|---|
-| 📷 **Breadboard Overview** | *(photo)* |
-| 📺 **Image Output on Monitor** | *(photo)* |
+| 📷 **Breadboard Overview** | ![BREADBOARS!!!!](./photos/closeUP.jpg) |
+| 📺 **Image Output on Monitor** | ![OUTPUT](./photos/output.jpg) |
 | 🔬 **Close-up of Logic ICs** | *(photo)* |
 | 📊 **Oscilloscope — HSync/VSync Signals** | *(photo)* |
 
@@ -37,16 +37,16 @@ VGA works by scanning pixels line by line, left to right, top to bottom. The car
 
 - **HSync** — Horizontal sync pulse, telling the monitor when a new line starts
 - **VSync** — Vertical sync pulse, telling the monitor when a new frame starts
-- **RGB signals** — 3-bit color (1 bit per channel = 8 colors) during the active display period
+- **RGB signals** — 3-bit color (2 bit per channel = 64 colors) during the active display period
 
 ### Pixel Clock & Counters
-A crystal oscillator drives the pixel clock. Binary counters (74HC163) count pixels horizontally and lines vertically. Comparator logic detects blanking intervals and generates sync pulses at the correct timing.
+A crystal oscillator drives the pixel clock. Binary counters (74HC161) count pixels horizontally and lines vertically. Comparator logic detects blanking intervals and generates sync pulses at the correct timing.
 
 ### Image Storage — EEPROM
 Image data is stored in a 28C256 EEPROM. The horizontal and vertical counter outputs form the EEPROM address bus. As counters increment, the EEPROM streams out pixel color data in real time — one pixel per clock cycle.
 
 ### Color Output
-3-bit RGB output (R, G, B) through resistor DAC to the VGA connector — 8 colors total.
+3-bit RGB output (R, G, B) through resistor DAC to the VGA connector — 64 colors total.
 
 ---
 
@@ -54,10 +54,10 @@ Image data is stored in a 28C256 EEPROM. The horizontal and vertical counter out
 
 | Component | Purpose |
 |-----------|---------|
-| 74HC163 | 4-bit binary counters (pixel/line counting) |
-| 74HC08 / 74HC32 | AND/OR gates for sync logic |
+| 74HC161 | 4-bit binary counters with carry (pixel/line counting) |
+| 74HC00 74HC30 | NAND gates for sync logic |
 | 28C256 EEPROM | Image data storage |
-| Crystal Oscillator | Pixel clock generation |
+| Pierce Crystal Oscillator 10 MHz | Pixel clock generation |
 | Resistors | RGB DAC + pull-ups |
 | VGA Connector | Monitor interface |
 | Breadboards | The entire PCB 😅 |
@@ -68,20 +68,17 @@ Image data is stored in a 28C256 EEPROM. The horizontal and vertical counter out
 
 | Parameter | Value |
 |-----------|-------|
-| Pixel Clock | 40 MHz |
-| Horizontal Total | 1056 pixels |
-| Active Pixels | 800 |
-| HSync Pulse | 128 pixels |
-| Vertical Total | 628 lines |
+| Pixel Clock | 10 MHz |
+| Horizontal Total | 800 pixels |
 | Active Lines | 600 |
-| VSync Pulse | 4 lines |
+| ACtual Image | 100 * 75 |
+
 
 ---
 
 ## 🔮 Upcoming Upgrade — Animated GIF Support
 
-The current build displays a static image stored in the lower half of the 28C256 EEPROM. The planned upgrade uses a **555 timer to toggle address line A14**, switching between two frames stored in the upper and lower halves of the EEPROM address space. This gives the card the ability to display a two-frame animation — essentially a hardware GIF with no software involved whatsoever.
-
+The current build displays a two frame GIF using a 555 timer to swithc between lower and upper half of 28c256. Sadly could not record it before my monitroe broke due to other reason. I am planning to use 29c040 flash ROM to store upto 32 frames or produce better quality image
 Simple. Elegant. Pure hardware.
 
 ---
