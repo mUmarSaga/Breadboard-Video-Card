@@ -28,6 +28,7 @@ Inspired by [Ben Eater's video card project](https://eater.net/vga), but built i
 | 📺 **Image Output on Monitor** | ![OUTPUT](./photos/IMG_20260503_125654.jpg) |
 | 📊 **SCHEMTICS — HSync Signals** | ![BREADBOARDS!!!!](./photos/vga-hsync.png) |
 | 📊 **SCHEMTICS — VSync Signals** | ![BREADBOARDS!!!!](./photos/vga-vsync.png) |
+| 📊 **SCHEMTICS — VGA Signals** | ![BREADBOARDS!!!!](./photos/vga.png) |
 | 📊 **SCHEMTICS — Clock Signals** | ![BREADBOARDS!!!!](./photos/Clock.PNG) |
 
 ---
