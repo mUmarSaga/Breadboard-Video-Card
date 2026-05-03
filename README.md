@@ -25,6 +25,7 @@ Inspired by [Ben Eater's video card project](https://eater.net/vga), but built i
 |---|---|
 | 📷 **Breadboard Overview** | ![BREADBOARDS!!!!](./photos/closeUp.jpg) |
 | 📺 **Image Output on Monitor** | ![OUTPUT](./photos/output.jpg) |
+| 📺 **Image Output on Monitor** | ![OUTPUT](./photos/IMG_20260503_125654.jpg) |
 | 📊 **SCHEMTICS — HSync Signals** | ![BREADBOARDS!!!!](./photos/vga-hsync.png) |
 | 📊 **SCHEMTICS — VSync Signals** | ![BREADBOARDS!!!!](./photos/vga-vsync.png) |
 | 📊 **SCHEMTICS — Clock Signals** | ![BREADBOARDS!!!!](./photos/Clock.PNG) |
@@ -79,7 +80,7 @@ Image data is stored in a 28C256 EEPROM. The horizontal and vertical counter out
 
 ## 🔮 Upcoming Upgrade — Animated GIF Support
 
-The current build displays a two frame GIF using a 555 timer to swithc between lower and upper half of 28c256. Sadly could not record it before my monitroe broke due to other reason. I am planning to use 29c040 flash ROM to store upto 32 frames or produce better quality image
+The current build displays a two frame GIF using a 555 timer to swithc between lower and upper half of 28c256. I am planning to use 29c040 flash ROM to store upto 32 frames or produce better quality image
 Simple. Elegant. Pure hardware.
 
 ---
